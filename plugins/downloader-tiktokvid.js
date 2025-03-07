@@ -1,93 +1,184 @@
+import axios from "axios";
+import cheerio from "cheerio";
 
-import axios from 'axios';
-const baileys = (await import("@whiskeysockets/baileys")).default;
-const { proto } = baileys;
-const { generateWAMessageFromContent } = baileys;
-const { generateWAMessageContent } = baileys;
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) {
+    return conn.reply(m.chat, `Usa el formato: ${usedPrefix + command} <enlace de TikTok>`, m);
+  }
 
-let handler = async (message, { conn, text }) => {
-    if (!text) {
-        return conn.reply(message.chat, ' *¿Qué video de TikTok quieres descargar?*', message);
+  try {
+    await m.react('🕒');
+
+    const videoResult = await ttsave.video(text);
+    const { 
+      type, 
+      nickname, 
+      username, 
+      description, 
+      videoInfo, 
+      slides, 
+      audioUrl 
+    } = videoResult;
+
+    let message = `*✔️🍟Downloader tiktok.*
+
+> • *Nombre*: ${nickname || "-"}
+> • *Usuario*: ${username || "-"}
+> • *Descripción*: ${description || "-"}
+`.trim();
+
+    if (type === "slide") {
+      message += "\n> • *Tipo*: Presentación (Imágenes)";
+      await conn.reply(m.chat, message, m);
+
+      for (let slide of slides) {
+        await m.react('✅');
+        await conn.sendFile(m.chat, slide.url, `presentación-${slide.number}.jpg`, "", m);
+      }
+    } 
+    else if (type === "video") {
+      message += "\n> • *Tipo*: Video";
+
+      if (videoInfo.nowm) {
+        await m.react('✅');
+await conn.sendMessage(m.chat, {
+  video: { url: videoInfo.nowm },
+  caption: message,
+  footer: dev,
+  buttons: [
+    {
+      buttonId: `.tiktokmp3 ${text}`,
+      buttonText: {
+        displayText: 'Audio 🎧',
+      },
+    },
+    {
+      buttonId: `.tiktokhd ${text}`,
+      buttonText: {
+        displayText: 'Calidad HD',
+      },
+    },
+  ],
+  viewOnce: true,
+  headerType: 4,
+}, { quoted: m });
+      } else {
+        conn.reply(m.chat, "No se pudo obtener el video sin marca de agua.", m);
+      }
     }
-    async function createVideoMessage(url) {
-        const { videoMessage } = await generateWAMessageContent(
-            { video: { url } },
-            { upload: conn.waUploadToServer }
-        );
-        return videoMessage;
+
+    if (audioUrl) {
     }
-    try {
-        const { data: response } = await axios.get(`https://rembotapi.vercel.app/api/tiktoksearch?text=${encodeURIComponent(text)}`);
-
-        if (!response.status) {
-            return conn.reply(message.chat, ' *No se pudo descargar el video de TikTok.*', message);
-        }
-        const videos = response.resultado; 
-        if (videos.length < 4) {
-            return conn.reply(message.chat, ' *No se encontraron suficientes videos.*', message);
-        }
-        const responseMessages = await Promise.all(videos.slice(0, 10).map(async (video) => {
-            const videoMessage = await createVideoMessage(video.videoUrl);
-            return {
-                body: proto.Message.InteractiveMessage.Body.fromObject({
-                    text: null
-                }),
-                footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                    text: `𝚃𝚒𝚝𝚞𝚕𝚘: ${video.description}`
-                }),
-                header: proto.Message.InteractiveMessage.Header.fromObject({
-                    hasMediaAttachment: true,
-                    videoMessage
-                }),
-                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-                    buttons: []
-                })
-            };
-        }));
-
-        const carouselMessage = proto.Message.InteractiveMessage.CarouselMessage.fromObject({
-            cards: responseMessages
-        });
-
-        const responseMessage = generateWAMessageFromContent(
-            message.chat,
-            {
-                viewOnceMessage: {
-                    message: {
-                        messageContextInfo: {
-                            deviceListMetadata: {},
-                            deviceListMetadataVersion: 2
-                        },
-                        interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-                            body: proto.Message.InteractiveMessage.Body.create({
-                                text: null
-                            }),
-                            footer: proto.Message.InteractiveMessage.Footer.create({
-                                text: ' `𝙏 𝙄 𝙆 𝙏 𝙊 𝙆  𝙎𝙀𝘼𝙍𝘾𝙃`'
-                            }),
-                            header: proto.Message.InteractiveMessage.Header.create({
-                                title: null,
-                                hasMediaAttachment: false
-                            }),
-                            carouselMessage
-                        })
-                    }
-                }
-            },
-            { quoted: message }
-        );
-
-        await conn.relayMessage(message.chat, responseMessage.message, { messageId: responseMessage.key.id });
-
-    } catch (error) {
-        await conn.reply(message.chat, error.toString(), message);
-    }
+  } catch (error) {
+    console.error(error);
+    conn.reply(m.chat, `Ocurrió un error al procesar la solicitud. Asegúrate de que el enlace de TikTok sea válido e inténtalo nuevamente.`, m);
+  }
 };
 
-handler.help = ['tiktoksearch <que va a buscar>'];
-handler.tags = ['downloader'];
-handler.command = ['tiktoksearch','tts','ttsearch'];
-handler.limit = 5
-handler.group = true
-
+handler.help = ["tiktok *<url>*"];
+handler.tags = ["dl"];
+handler.command = ["tiktok"];
 export default handler;
+
+const headers = {
+  authority: "ttsave.app",
+  accept: "application/json, text/plain, */*",
+  origin: "https://ttsave.app",
+  referer: "https://ttsave.app/en",
+  "user-agent": "Postify/1.0.0",
+};
+
+const ttsave = {
+  submit: async function (url, referer) {
+    const headerx = { ...headers, referer };
+    const data = { query: url, language_id: "1" };
+    return axios.post("https://ttsave.app/download", data, { headers: headerx });
+  },
+
+  parse: function ($) {
+    const uniqueId = $("#unique-id").val();
+    const nickname = $("h2.font-extrabold").text();
+    const profilePic = $("img.rounded-full").attr("src");
+    const username = $("a.font-extrabold.text-blue-400").text();
+    const description = $("p.text-gray-600").text();
+
+    const dlink = {
+      nowm: $("a.w-full.text-white.font-bold").first().attr("href"),
+      wm: $("a.w-full.text-white.font-bold").eq(1).attr("href"),
+      audio: $("a[type='audio']").attr("href"),
+      profilePic: $("a[type='profile']").attr("href"),
+      cover: $("a[type='cover']").attr("href"),
+    };
+
+    const stats = {
+      reproducciones: "",
+      meGusta: "",
+      comentarios: "",
+      compartidos: "",
+    };
+
+    $(".flex.flex-row.items-center.justify-center").each((index, element) => {
+      const $element = $(element);
+      const svgPath = $element.find("svg path").attr("d");
+      const value = $element.find("span.text-gray-500").text().trim();
+
+      if (svgPath && svgPath.startsWith("M10 18a8 8 0 100-16")) {
+        stats.reproducciones = value;
+      } else if (svgPath && svgPath.startsWith("M3.172 5.172a4 4 0 015.656")) {
+        stats.meGusta = value || "0";
+      } else if (svgPath && svgPath.startsWith("M18 10c0 3.866-3.582")) {
+        stats.comentarios = value;
+      } else if (svgPath && svgPath.startsWith("M17.593 3.322c1.1.128")) {
+        stats.compartidos = value;
+      }
+    });
+
+    const tituloCancion = $(".flex.flex-row.items-center.justify-center.gap-1.mt-5")
+      .find("span.text-gray-500")
+      .text()
+      .trim();
+
+    const slides = $("a[type='slide']")
+      .map((i, el) => ({
+        number: i + 1,
+        url: $(el).attr("href"),
+      }))
+      .get();
+
+    return {
+      uniqueId,
+      nickname,
+      profilePic,
+      username,
+      description,
+      dlink,
+      stats,
+      tituloCancion,
+      slides,
+    };
+  },
+
+  video: async function (link) {
+    try {
+      const response = await this.submit(link, "https://ttsave.app/en");
+      const $ = cheerio.load(response.data);
+      const result = this.parse($);
+
+      if (result.slides && result.slides.length > 0) {
+        return { type: "slide", ...result };
+      }
+
+      return {
+        type: "video",
+        ...result,
+        videoInfo: {
+          nowm: result.dlink.nowm,
+          wm: result.dlink.wm,
+        },
+      };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+};
