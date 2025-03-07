@@ -175,78 +175,63 @@ let img = 'https://qu.ax/bzNng.jpg'
 
  let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 await m.react('🧇') 
-await conn.sendMessage(
-  m.chat,
-  {
-    footer: 'text',
-    headerType: 4,
-    viewOnce: true,
-    caption: text,
-    document: fs.readFileSync("./package.json"),
-    fileName: "Sofia documento vip",
-    mimetype:
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    fileLength: 99999999,
-    buttons: [
-      {
-        type: 4,
-        nativeFlowInfo: {
-          name: "single_select",
-          paramsJson: JSON.stringify({
-            title: "📂 Mas Opciones",
-            sections: [
-              {
-                title: "my focking bicht",
-                highlight_label: "",
-                rows: [
-                  {
-                    header: "⌬ Message",
-                    title: "menu all",
-                    description: "i like pussydog",
-                    id: ".menu",
-                  },
-                  {
-                    header: "⌬ Message",
-                    title: "check ping",
-                    description: "i like pussycat",
-                    id: ".ping",
-                  },
-                ],
-              },
-            ],
-          }),
-        },
-      },
-      {
-        buttonId: `.owner`,
-        buttonText: { displayText: "👤 Owner" },
-      },
-      {
-        buttonId: `.owner`,
-        buttonText: { displayText: "Perfil 🆔" },
-      },
-    ],
-    contextInfo: {
-      externalAdReply: {
-        title: "Sofia-Ai Menu Completo",
-        body: "ᯓᡣ𐭩 Ai Sofia",
-        mediaType: 1,
-        mediaUrl: "",
-        thumbnailUrl: img,
-        sourceUrl: "",
-        containsAutoReply: true,
-        renderLargerThumbnail: true,
-        showAdAttribution: false,
-      },
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: channelRD.id,
-        newsletterName: channelRD.name,
+await conn.sendMessage(m.chat, {
+  image: { url: img },
+  caption: text,
+  footer: 'hola',
+  buttons: [
+    {
+      type: 4,
+      nativeFlowInfo: {
+        name: "single_select",
+        paramsJson: JSON.stringify({
+          title: "📂 Mas Opciones",
+          sections: [
+            {
+              title: "my focking bicht",
+              highlight_label: "",
+              rows: [
+                {
+                  header: "⌬ Message",
+                  title: "menu all",
+                  description: "i like pussydog",
+                  id: ".menu",
+                },
+                {
+                  header: "⌬ Message",
+                  title: "check ping",
+                  description: "i like pussycat",
+                  id: ".ping",
+                },
+              ],
+            },
+          ],
+        }),
       },
     },
+    {
+      buttonId: `.owner`,
+      buttonText: {
+        displayText: '👤 Owner',
+      },
+    },
+    {
+      buttonId: `.perfil`,
+      buttonText: {
+        displayText: 'Perfil 🆔',
+      },
+    },
+  ],
+  contextInfo: {
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: channelRD.id,
+      newsletterName: channelRD.name,
+    },
   },
-  { quoted: m }
-);
+  viewOnce: true,
+  headerType: 4,
+}, { quoted: m });
 
   } catch (e) {
     conn.reply(m.chat, 'Lo siento, el menú en desarrollo [TEAM ⭐ ANG] .', m)
