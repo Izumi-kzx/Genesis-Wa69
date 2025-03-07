@@ -182,7 +182,7 @@ await m.react('🧇')
 await conn.sendMessage(m.chat, {
   image: { url: img },
   caption: text,
-  footer: 'hola',
+  footer: 'Power By Code-Titans 2022-2025',
   buttons: [
     {
       type: 4,
