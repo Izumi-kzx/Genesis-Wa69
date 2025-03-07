@@ -176,43 +176,43 @@ let img = 'https://tinyurl.com/2xragovw'
  let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 await m.react('🐉') 
 await conn.sendMessage(
-      m.chat,
+  m.chat,
+  {
+    footer: 'hola',
+    headerType: 4,
+    viewOnce: true,
+    caption: text,
+    buttons: [
       {
-        footer: 'hola',
-        headerType: 4,
-        viewOnce: true,
-        caption: text,
-        document: fs.readFileSync("./package.json"),
-        fileName: "Sofia documento vip",
-        mimetype:
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        fileLength: 99999999,
-        buttons: [
-          {
-            buttonId: `.ping`,
-            buttonText: { displayText: "ᯓᡣ𐭩 ⍴іᥒg" },
-          },
-          {
-            buttonId: `.owner`,
-            buttonText: { displayText: "ᯓᡣ𐭩 ᥆ᥕᥒᥱr" },
-          },
-        ],
-        contextInfo: {
-          externalAdReply: {
-            title: "Sofia-Ai Menu Completo",
-            body: "ᯓᡣ𐭩 Ai Sofia",
-            mediaType: 1,
-            mediaUrl: "",
-            thumbnailUrl: img,
-            sourceUrl: "",
-            containsAutoReply: true,
-            renderLargerThumbnail: true,
-            showAdAttribution: false,
-          },
-        },
+        buttonId: `.ping`,
+        buttonText: { displayText: "ᯓᡣ𐭩 ⍴іᥒg" },
       },
-      { quoted: m }
-    );
+      {
+        buttonId: `.owner`,
+        buttonText: { displayText: "ᯓᡣ𐭩 ᥆ᥕᥒᥱr" },
+      },
+    ],
+    contextInfo: {
+      externalAdReply: {
+        title: "Sofia-Ai Menu Completo",
+        body: "ᯓᡣ𐭩 Ai Sofia",
+        mediaType: 1,
+        mediaUrl: "",
+        thumbnailUrl: img,
+        sourceUrl: "",
+        containsAutoReply: true,
+        renderLargerThumbnail: true,
+        showAdAttribution: false,
+      },
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: channelRD.id,
+        newsletterName: channelRD.name,
+      },
+    },
+  },
+  { quoted: m }
+);
 
   } catch (e) {
     conn.reply(m.chat, 'Lo siento, el menú en desarrollo [TEAM ⭐ ANG] .', m)
