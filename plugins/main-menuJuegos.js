@@ -182,6 +182,11 @@ await conn.sendMessage(
     headerType: 4,
     viewOnce: true,
     caption: text,
+    document: fs.readFileSync("./package.json"),
+    fileName: "Sofia documento vip",
+    mimetype:
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    fileLength: 99999999,
     buttons: [
       {
         buttonId: `.ping`,
