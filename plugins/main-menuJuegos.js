@@ -188,20 +188,26 @@ await conn.sendMessage(m.chat, {
           title: "📂 Mas Opciones",
           sections: [
             {
-              title: "my focking bicht",
+              title: "🔷 Opciones del Menu",
               highlight_label: "",
               rows: [
                 {
-                  header: "⌬ Message",
-                  title: "menu all",
-                  description: "i like pussydog",
+                  header: "🎁 Menu Completo",
+                  title: "",
+                  description: "¡Mira todas las increíbles características disponibles!",
                   id: ".menu",
                 },
                 {
-                  header: "⌬ Message",
-                  title: "check ping",
-                  description: "i like pussycat",
-                  id: ".ping",
+                  header: "🛃 Sub Bots",
+                  title: "",
+                  description: "¡Observa nuestra lista de subbots de Génesis!",
+                  id: ".bots",
+                },
+                {
+                  header: "📞 Contactar Owner",
+                  title: "",
+                  description: "¿Necesitas ayuda? ¡Contacta al propietario aquí!",
+                  id: ".owner",
                 },
               ],
             },
