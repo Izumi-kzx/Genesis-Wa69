@@ -1,87 +1,97 @@
-const { prepareWAMessageMedia, generateWAMessageFromContent } = (await import('@whiskeysockets/baileys')).default;
-// const { prepareWAMessageMedia, generateWAMessageFromContent } = await import("@whiskeysockets/baileys");
-const { randomBytes } = await import("crypto");
+import { prepareWAMessageMedia, generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
 const handler = async (m, { conn }) => {
-    try {
 
-        const { imageMessage } = await prepareWAMessageMedia({
-            image: { url: "https://i.pinimg.com/736x/1c/b9/dc/1cb9dce731c1544b0bd018b02567fd1f.jpg" }
-        }, { upload: conn.waUploadToServer });
-
-        const sections = [
-            {
-                title: "Tags Relacionados",
-                rows: [
-                    {
-                        title: 'Example',
-                        highlight_label: "test",
-                        description: "Example description",
-                        id: ".play",
-                    },
-                ],
-            },
-        ];
-
-        const messageContent = {
-            interactiveMessage: {
-                body: { text: '...' },
-                footer: { text: '...' },
-                header: {
-                    title: 'Example Title',
-                    subtitle: 'Example Subtitle',
-                    hasMediaAttachment: true,
-                    documentMessage: {
-                        ...imageMessage,
-                        pageCount: 1,
-                        fileLength: 99999999999,
-                        fileName: 'example_file',
-                        jpegThumbnail: imageMessage.jpegThumbnail
-                    },
-                },
-                nativeFlowMessage: {
-                    buttons: [
+let txt = `> *YouTube Play 🍧.*\n\n`;
+txt += `hola\n\n`;
+txt += `• *Duración:*\n`;
+txt += `• *Autor:*\n`;
+txt += `• *Publicado:*\n`;
+txt += `• *Url:*\n\n`;
+await conn.sendMessage(m.chat, {
+    image: { url: 'https://i.ibb.co/Rpsxjb5t/file.jpg' },
+    caption: txt,
+    footer: 'la cosa es seria chavito\nte amo w',
+    contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true
+    },
+    buttons: [
+        {
+            type: 4,
+            nativeFlowInfo: {
+                name: 'single_select',
+                paramsJson: JSON.stringify({
+                    title: '⊹₊ ⋆ᯓᡣ𐭩 rᥱsᥙᥣ𝗍ᥲძ᥆s ᥡ᥆ᥙ𝗍ᥙᑲᥱ',
+                    sections: [
                         {
-                            buttonParamsJson: "{\"display_text\":\"Example Button 2\",\"id\":\"example_id_2\"}",
-                            name: "quick_reply"
+                            title: 'my focking bicht',
+                            highlight_label: '',
+                            rows: [
+                                {
+                                    header: '⌬ Message',
+                                    title: 'menu all',
+                                    description: 'i like pussydog',
+                                    id: ".menu"
+                                },
+                                {
+                                    header: '⌬ Message',
+                                    title: 'check ping',
+                                    description: 'i like pussycat',
+                                    id: ".ping"
+                                },
+                            ],
                         },
-                        {
-                            buttonParamsJson: JSON.stringify({
-                                display_text: 'Example Button 3',
-                                id: 'example_id_3',
-                                copy_code: 'Example copy code'
-                            }),
-                            name: "cta_copy"
-                        },
-                        {
-                            buttonParamsJson: "{\"display_text\":\"Example Button 4\",\"phone_number\":\"1234567890\"}",
-                            name: "cta_call"
-                        },
-                        {
-                            name: "single_select",
-                            buttonParamsJson: JSON.stringify({
-                                title: "Example Section",
-                                sections: sections,
-                            }),
-                        }
                     ],
-                    messageParamsJson: "{}",
-                    messageVersion: 1
-                }
+                }),
             },
-            messageContextInfo: {
-                messageSecret: randomBytes(32)
-            }
-        };
+        },
+        {
+            type: 4,
+            nativeFlowInfo: {
+                name: 'single_select',
+                paramsJson: JSON.stringify({
+                    title: '⊹₊ ⋆ᯓᡣ𐭩 rᥱsᥙᥣ𝗍ᥲძ᥆s s⍴᥆𝗍і𝖿ᥡ',
+                    sections: [
+                        {
+                            title: 'Options',
+                            highlight_label: '',
+                            rows: [
+                                {
+                                    header: '⌬ Tools',
+                                    title: 'Tool 1',
+                                    description: 'Use this tool',
+                                    id: ".tool1"
+                                },
+                                {
+                                    header: '⌬ Tools',
+                                    title: 'Tool 2',
+                                    description: 'Use this another tool',
+                                    id: ".tool2"
+                                },
+                            ],
+                        },
+                    ],
+                }),
+            },
+        },
+        {
+            buttonId: '.ping',
+            buttonText: { displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆' },
+            type: 1,
+        },
+        {
+            buttonId: '.tqto',
+            buttonText: { displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆' },
+            type: 1,
+        },
+    ],
+    headerType: 1,
+    viewOnce: true
+}, { quoted: m });
 
-        const message = generateWAMessageFromContent(m.chat, messageContent, { userJid: conn.user.id });
-        await conn.relayMessage(m.chat, message.message, { messageId: message.key.id });
-
-    } catch (error) {
-        console.error("Error al enviar el mensaje interactivo:", error);
-    }
 };
 
-handler.command = ["tes"];
-
+handler.command = ['tesyt']; 
 export default handler;
