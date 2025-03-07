@@ -596,7 +596,7 @@ Crea un *Sub-Bot* con tu número utilizando *#qr* o *#code*
 
 handler.help = ['menu'];
 handler.tags = ['main'];
-handler.command = ['menu', 'menú', 'help'];
+handler.command = ['menutg'];
 
 export default handler;
 
