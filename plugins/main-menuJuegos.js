@@ -178,10 +178,10 @@ await m.react('🐉')
 await conn.sendMessage(
   m.chat,
   {
-    footer: text,
+    footer: 'text',
     headerType: 4,
     viewOnce: true,
-    caption: estilo(text),
+    caption: text,
     document: fs.readFileSync("./package.json"),
     fileName: "Sofia documento vip",
     mimetype:
