@@ -175,27 +175,13 @@ let img = 'https://tinyurl.com/2xragovw'
 
  let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 await m.react('🐉') 
-
-/* conn.sendMessage(m.chat, {
-        text: text,
-        contextInfo: {
-        externalAdReply: {
-        title: 'MENU KI ',
-        body: 'MENU KI',
-        thumbnailUrl: img,
-        sourceUrl: global.canal,
-        mediaType: 1,
-        renderLargerThumbnail: true
-        }}},
-        { quoted: estilo}) */
-
 await conn.sendMessage(
       m.chat,
       {
-        footer: text,
+        footer: 'hola',
         headerType: 4,
         viewOnce: true,
-        caption: estilo(text),
+        caption: text,
         document: fs.readFileSync("./package.json"),
         fileName: "Sofia documento vip",
         mimetype:
