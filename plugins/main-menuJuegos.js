@@ -193,7 +193,7 @@ await conn.sendMessage(
         nativeFlowInfo: {
           name: "single_select",
           paramsJson: JSON.stringify({
-            title: "⊹₊ ⋆ᯓᡣ𐭩 rᥱsᥙᥣ𝗍ᥲძ᥆s ᥡ᥆ᥙ𝗍ᥙᑲᥱ",
+            title: "📂 Mas Opciones",
             sections: [
               {
                 title: "my focking bicht",
@@ -218,12 +218,12 @@ await conn.sendMessage(
         },
       },
       {
-        buttonId: `.ping`,
-        buttonText: { displayText: "ᯓᡣ𐭩 ⍴іᥒg" },
+        buttonId: `.owner`,
+        buttonText: { displayText: "👤 Owner" },
       },
       {
         buttonId: `.owner`,
-        buttonText: { displayText: "ᯓᡣ𐭩 ᥆ᥕᥒᥱr" },
+        buttonText: { displayText: "Perfil 🆔" },
       },
     ],
     contextInfo: {
