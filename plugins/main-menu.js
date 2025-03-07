@@ -279,7 +279,6 @@ await conn.sendMessage(m.chat, {
     },
   ],
   contextInfo: {
-    mentionedJid: [m.sender, userId],
     isForwarded: true,
     forwardedNewsletterMessageInfo: {
       newsletterJid: channelRD.id,
