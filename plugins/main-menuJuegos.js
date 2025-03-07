@@ -175,20 +175,48 @@ let img = 'https://tinyurl.com/2xragovw'
 
  let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 await m.react('🐉') 
-
- await conn.sendMessage(
+await conn.sendMessage(
   m.chat,
   {
-    footer: 'text',
+    footer: text,
     headerType: 4,
     viewOnce: true,
-    caption: text,
+    caption: estilo(text),
     document: fs.readFileSync("./package.json"),
     fileName: "Sofia documento vip",
     mimetype:
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     fileLength: 99999999,
     buttons: [
+      {
+        type: 4,
+        nativeFlowInfo: {
+          name: "single_select",
+          paramsJson: JSON.stringify({
+            title: "⊹₊ ⋆ᯓᡣ𐭩 rᥱsᥙᥣ𝗍ᥲძ᥆s ᥡ᥆ᥙ𝗍ᥙᑲᥱ",
+            sections: [
+              {
+                title: "my focking bicht",
+                highlight_label: "",
+                rows: [
+                  {
+                    header: "⌬ Message",
+                    title: "menu all",
+                    description: "i like pussydog",
+                    id: ".menu",
+                  },
+                  {
+                    header: "⌬ Message",
+                    title: "check ping",
+                    description: "i like pussycat",
+                    id: ".ping",
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      },
       {
         buttonId: `.ping`,
         buttonText: { displayText: "ᯓᡣ𐭩 ⍴іᥒg" },
