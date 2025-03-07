@@ -523,8 +523,8 @@ Crea un *Sub-Bot* con tu número utilizando *#qr* o *#code*
           forwardingScore: 999,
           externalAdReply: {
               title: botname,
-              body: textbot,
-              thumbnailUrl: banner,
+              body: 'hola',
+              thumbnailUrl: 'https://qu.ax/MTQBm.jpg',
               mediaType: 1,
               showAdAttribution: true,
               renderLargerThumbnail: true,
