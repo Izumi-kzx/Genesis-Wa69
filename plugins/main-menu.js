@@ -263,7 +263,7 @@ let totalf = Object.values(global.plugins).reduce((total, plugin) => {
     await conn.sendMessage(m.chat, {
       image: { url: img },
       caption: estilo(text),
-      footer: dev,
+      footer: 'hola',
       buttons: [
         {
           buttonId: `.ping`,
