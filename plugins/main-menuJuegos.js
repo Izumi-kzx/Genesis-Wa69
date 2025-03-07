@@ -244,13 +244,13 @@ await conn.sendMessage(m.chat, {
 }, { quoted: m });
 
   } catch (e) {
-    conn.reply(m.chat, 'Lo siento, el menú en desarrollo [TEAM ⭐ ANG] .', m)
+    conn.reply(m.chat, 'Lo siento, el menú en desarrollo.', m)
     throw e
   }
 }
-handler.help = ['menuki']
+handler.help = ['menuff']
 handler.tags = ['main']
-handler.command = ['menuki']
+handler.command = ['menuff']
 
 export default handler
 
