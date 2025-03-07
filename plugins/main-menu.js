@@ -60,7 +60,6 @@ const defaultMenu = {
 🍜 *𝖢𝗈𝗆𝖺𝗇𝖽𝗈𝗌 ➫*  _\`[ %totalf ]\`_
 
 Crea un *Sub-Bot* con tu número utilizando *#serbot* o *#code*
-
  %readmore
   `.trimStart(),
   header: '%category\n',
