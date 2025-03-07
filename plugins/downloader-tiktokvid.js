@@ -44,7 +44,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 await conn.sendMessage(m.chat, {
   video: { url: videoInfo.nowm },
   caption: message,
-  footer: dev,
+  footer: 'hola',
   buttons: [
     {
       buttonId: `.tiktokmp3 ${text}`,
