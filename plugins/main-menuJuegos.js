@@ -48,35 +48,6 @@ await conn.sendMessage(m.chat, {
             },
         },
         {
-            type: 4,
-            nativeFlowInfo: {
-                name: 'single_select',
-                paramsJson: JSON.stringify({
-                    title: '⊹₊ ⋆ᯓᡣ𐭩 rᥱsᥙᥣ𝗍ᥲძ᥆s s⍴᥆𝗍і𝖿ᥡ',
-                    sections: [
-                        {
-                            title: 'Options',
-                            highlight_label: '',
-                            rows: [
-                                {
-                                    header: '⌬ Tools',
-                                    title: 'Tool 1',
-                                    description: 'Use this tool',
-                                    id: ".tool1"
-                                },
-                                {
-                                    header: '⌬ Tools',
-                                    title: 'Tool 2',
-                                    description: 'Use this another tool',
-                                    id: ".tool2"
-                                },
-                            ],
-                        },
-                    ],
-                }),
-            },
-        },
-        {
             buttonId: '.ping',
             buttonText: { displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆' },
             type: 1,
