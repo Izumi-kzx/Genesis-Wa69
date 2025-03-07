@@ -260,27 +260,34 @@ let totalf = Object.values(global.plugins).reduce((total, plugin) => {
   ].getRandom()
 
     await m.react('🤍')
-    await conn.sendMessage(m.chat, {
-      image: { url: img },
-      caption: estilo(text),
-      footer: 'hola',
-      buttons: [
-        {
-          buttonId: `.ping`,
-          buttonText: {
-            displayText: 'ᯓᡣ𐭩 ⍴іᥒg',
-          },
-        },
-        {
-          buttonId: `.owner`,
-          buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥆ᥕᥒᥱr',
-          },
-        },
-      ],
-      viewOnce: true,
-      headerType: 4,
-    }, { quoted: m })
+await conn.sendMessage(m.chat, {
+  image: { url: img },
+  caption: estilo(text),
+  footer: 'hola',
+  buttons: [
+    {
+      buttonId: `.ping`,
+      buttonText: {
+        displayText: 'ᯓᡣ𐭩 ⍴іᥒg',
+      },
+    },
+    {
+      buttonId: `.owner`,
+      buttonText: {
+        displayText: 'ᯓᡣ𐭩 ᥆ᥕᥒᥱr',
+      },
+    },
+  ],
+  contextInfo: {
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: channelRD.id,
+      newsletterName: channelRD.name,
+    },
+  },
+  viewOnce: true,
+  headerType: 4,
+}, { quoted: m });
   } catch (e) {
     conn.reply(m.chat, ' error', m)
     throw e
