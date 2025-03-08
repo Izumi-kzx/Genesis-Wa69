@@ -45,13 +45,34 @@ global.prems = []
    
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = ``
-global.author = `{\n "bot": {\n   "name": "🐉孫ՏᴏɴᏀᴏᴋᴜ孫🐉",\n     "author": "YerTX2",\n   "status_bot": ${muptime}\n }\n}`
-global.wait = '*🐉孫ՏᴏɴᏀᴏᴋᴜ孫🐉*'
-global.botname = '🐉孫ՏᴏɴᏀᴏᴋᴜ孫🐉 '
-global.textbot = `🐉孫ՏᴏɴᏀᴏᴋᴜ孫🐉`
-global.listo = 'ENVIADO POR BOT SonGoku '
-global.namechannel = '【 SonGoku BOT 】 '
+global.author = 'Genesis - AI' //rcanal 
+global.packname = 'Genesis - AI' //stiker
+global.redes = ''
+global.isBaileysFail = false
+global.ev = ''
+
+global.jadi = 'GenesisJadiBot';
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.5'
+global.vs = '2.0.7'
+global.vsJB = '5.0'
+global.sessions = 'GenesisSession'
+
+
+global.wm = '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿 : '
+global.vs = '1.4.0'
+global.igfg = '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿'
+global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝗍ᥱᥲm ᥴ᥆ძᥱ 𝗍і𝗍ᥲᥒs'
+global.team = '> © ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝗍ᥱᥲm ᥴ᥆ძᥱ 𝗍і𝗍ᥲᥒs'
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+global.namebot = 'Genesis - AI'
+global.wait = '*Aɢᴜᴀʀᴅᴇ ᴜɴ ᴍᴏᴍᴇɴᴛᴏ ฅ^•ﻌ•^ฅ*'
+global.titulowm2 = 'U S U A R I O - G E N E S I S'
+global.botname = '۟Genesis - AI'
+global.textbot = 'Genesis Channel'
+global.listo = '*Aqui tiene ฅ^•ﻌ•^ฅ*'
+global.vs = '2.0.0'
+global.dis = ':⁖֟⊱┈֟፝❥'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 global.fantasyVid = ['./media/menus/Menuvid1.mp4', './media/menus/Menuvid2.mp4', './media/menus/Menuvid3.mp4']
